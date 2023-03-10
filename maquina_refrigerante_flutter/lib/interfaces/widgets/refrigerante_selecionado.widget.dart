@@ -10,20 +10,24 @@ class RefrigeranteSelecionadoWidget extends StatelessWidget {
       required this.embalagem,
       required this.urlImagem,
       required this.preco,
-      required this.quantidade})
+      required this.quantidade,
+      required this.precoFinal})
       : super(key: key);
   final String nome;
   final TipoEmbalagem embalagem;
   final String urlImagem;
   final double preco;
+  final double precoFinal;
   final int quantidade;
 
   @override
   Widget build(BuildContext context) {
     return Stack(clipBehavior: Clip.none, children: [
       Container(
-        padding: const EdgeInsets.symmetric(vertical: kPaddingPadrao, horizontal: kPaddingPadrao * 2),
-        margin: const EdgeInsets.symmetric(horizontal: kMarginPadrao * 2, vertical: kMarginPadrao / 2),
+        padding:
+            const EdgeInsets.symmetric(vertical: kPaddingPadrao, horizontal: kPaddingPadrao * 2),
+        margin:
+            const EdgeInsets.symmetric(horizontal: kMarginPadrao * 2, vertical: kMarginPadrao / 2),
         decoration: BoxDecoration(
           boxShadow: kBoxShadowPadrao,
           color: Colors.white,
@@ -36,7 +40,7 @@ class RefrigeranteSelecionadoWidget extends StatelessWidget {
             ConversaoParaRealUtils.conversaoParaReal(preco),
             style: const TextStyle(fontWeight: FontWeight.bold, color: kCorFonte),
           ),
-          trailing: Text(ConversaoParaRealUtils.conversaoParaReal(preco),
+          trailing: Text(ConversaoParaRealUtils.conversaoParaReal(precoFinal),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: kCorFonte)),
         ),
       ),
@@ -45,7 +49,8 @@ class RefrigeranteSelecionadoWidget extends StatelessWidget {
           top: 0,
           left: 0,
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: kPaddingPadrao, horizontal: kPaddingPadrao * 2.75),
+            padding: const EdgeInsets.symmetric(
+                vertical: kPaddingPadrao, horizontal: kPaddingPadrao * 2.75),
             decoration: BoxDecoration(
               color: kCorQuantidade,
               borderRadius: BorderRadius.circular(20),

@@ -7,7 +7,8 @@ import 'package:maquina_refrigerante_flutter/interfaces/widgets/refrigerante_sel
 import 'package:maquina_refrigerante_flutter/utils/obter_imagem.utils.dart';
 
 class CardRegistradoraWidget extends StatelessWidget {
-  const CardRegistradoraWidget({Key? key, required this.cupom, required this.refrigerantes, required this.cor})
+  const CardRegistradoraWidget(
+      {Key? key, required this.cupom, required this.refrigerantes, required this.cor})
       : super(key: key);
   final Cupom cupom;
   final List<Refrigerante> refrigerantes;
@@ -21,12 +22,15 @@ class CardRegistradoraWidget extends StatelessWidget {
         children: [
           ListRefrigerantesSelecionados(
             quantidade: cupom.itens.length,
-            builder: (context, i) => RefrigeranteSelecionadoWidget(
-                nome: cupom.itens[i].descricao,
-                embalagem: refrigerantes[i].tipo,
-                urlImagem: ObterImagemUtil.obterImagem(i, refrigerantes),
-                preco: cupom.itens[i].valorUnitario,
-                quantidade: cupom.itens[i].quantidade),
+            builder: (context, i) =>
+                RefrigeranteSelecionadoWidget(
+                  nome: cupom.itens[i].descricao,
+                  embalagem: refrigerantes[i].tipo,
+                  urlImagem: ObterImagemUtil.obterImagem(i, refrigerantes),
+                  preco: cupom.itens[i].valorUnitario,
+                  quantidade: cupom.itens[i].quantidade,
+                  precoFinal: (cupom.itens[i].valorUnitario) * (cupom.itens[i].quantidade),
+                ),
           ),
           const Spacer(),
           CardFrasesRegistradoraWidget(
