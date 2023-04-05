@@ -35,7 +35,7 @@ class Finalizadora {
   }
 
   @override
-  bool operator ==(Object outro) {
+  bool operator == (Object outro) {
     if (outro is Finalizadora) return this.valor == outro.valor;
     return this == outro;
   }
