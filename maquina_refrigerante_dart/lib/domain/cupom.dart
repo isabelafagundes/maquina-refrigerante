@@ -11,7 +11,6 @@ class Cupom {
   Cupom._(this.numeroCupom);
 
   factory Cupom.criar(int numeroCupom) {
-    // TODO validar criar
     return Cupom._(numeroCupom);
   }
 

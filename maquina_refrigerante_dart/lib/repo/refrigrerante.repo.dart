@@ -1,5 +1,5 @@
 import 'package:maquina_refrigerante/domain/refrigerante.dart';
 
 abstract class RefrigeranteRepo {
-  List<Refrigerante> obterRefrigerantesDisponiveis();
+  Future<List<Refrigerante> >obterRefrigerantesDisponiveis();
 }

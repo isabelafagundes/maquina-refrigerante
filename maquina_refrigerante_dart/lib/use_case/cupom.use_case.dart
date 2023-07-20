@@ -75,10 +75,10 @@ class CupomUseCase {
     _state.atualizar();
   }
 
-  void salvarCupom() {
+  Future<void> salvarCupom() async {
     try {
       Cupom cupom = _state.cupom;
-      _repo.salvar(cupom);
+      await _repo.salvar(cupom);
     } catch (erro) {
       adicionarErro("Não foi possível salvar o cupom");
     }

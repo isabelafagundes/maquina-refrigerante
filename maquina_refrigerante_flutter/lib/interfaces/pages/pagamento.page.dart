@@ -43,25 +43,25 @@ class _PagamentoPageState extends State<PagamentoPage> {
                   ContainerPadraoWidget(
                     children: [
                       CardRegistradoraWidget(
-                          cupom: widget.cupom,
-                          refrigerantes: widget.refrigerantesDisponiveis,
-                          cor: kCorFonte),
+                          cupom: widget.cupom, refrigerantes: widget.refrigerantesDisponiveis, cor: kCorFonte),
                     ],
                   ),
                   const SizedBox(height: 15),
-                  ContainerPadraoWidget(children: [
-                    const SizedBox(height: 10),
-                    CardFormasPagamento(
+                  ContainerPadraoWidget(
+                    children: [
+                      const SizedBox(height: 10),
+                      CardFormasPagamento(
+                          cupom: widget.cupom,
+                          aoClicarPagar: widget.aoClicarPagar,
+                          formasPagamento: widget.formasPagamento),
+                      const Spacer(),
+                      BotoesPagamentoPageWidget(
                         cupom: widget.cupom,
-                        aoClicarPagar: widget.aoClicarPagar,
-                        formasPagamento: widget.formasPagamento),
-                    const Spacer(),
-                    BotoesPagamentoPageWidget(
-                      cupom: widget.cupom,
-                      aoClicarVoltar: widget.aoClicarVoltar,
-                    ),
-                    const SizedBox(height: 10)
-                  ]),
+                        aoClicarVoltar: widget.aoClicarVoltar,
+                      ),
+                      const SizedBox(height: 10)
+                    ],
+                  ),
                 ],
               ),
             ),

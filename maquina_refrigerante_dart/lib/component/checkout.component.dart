@@ -1,5 +1,9 @@
 import 'package:maquina_refrigerante/domain/forma_pagamento.dart';
 import 'package:maquina_refrigerante/domain/refrigerante.dart';
+import 'package:maquina_refrigerante/repo/cupom.repo.dart';
+import 'package:maquina_refrigerante/repo/forma_pagamento.repo.dart';
+import 'package:maquina_refrigerante/repo/refrigrerante.repo.dart';
+import 'package:maquina_refrigerante/state/checkout.state.dart';
 import 'package:maquina_refrigerante/use_case/cupom.use_case.dart';
 import 'package:maquina_refrigerante/use_case/forma_pagamento.use_case.dart';
 import 'package:maquina_refrigerante/use_case/refrigerante.use_case.dart';
@@ -9,37 +13,46 @@ class CheckoutComponent {
   late CupomUseCase cupomUseCase;
   late FormaPagamentoUseCase formaPagamentoUseCase;
 
-  void inicializar(RefrigeranteUseCase refrigeranteUseCase, CupomUseCase cupomUseCase, FormaPagamentoUseCase formaPagamentoUseCase){
-   this.refrigeranteUseCase = refrigeranteUseCase;
-   this.cupomUseCase = cupomUseCase;
-   this.formaPagamentoUseCase = formaPagamentoUseCase;
+  void inicializar(
+    RefrigeranteRepo refrigeranteRepo,
+    CupomRepo cupomRepo,
+    FormaPagamentoRepo formaPagamentoRepo,
+    CheckoutState state,
+  ) {
+    refrigeranteUseCase = RefrigeranteUseCase(refrigeranteRepo, state);
+    cupomUseCase = CupomUseCase(cupomRepo, state);
+    formaPagamentoUseCase = FormaPagamentoUseCase(state, formaPagamentoRepo);
   }
 
-  void obterRefrigerantesDisponiveis() {
+  Future<void> obterRefrigerantesDisponiveis() async {
     refrigeranteUseCase.obterRefrigerantesDisponiveis();
   }
 
-  void obterFormasPagamento() {
+  Future<void> obterFormasPagamento() async {
     formaPagamentoUseCase.obterFormasPagamento();
   }
 
-  void registrar(Refrigerante refrigerante) {
+  Future<void> registrar(Refrigerante refrigerante) async {
     cupomUseCase.registrar(refrigerante);
   }
 
-  void pagar(FormaPagamento formaPagamento) {
+  Future<void> pagar(FormaPagamento formaPagamento) async {
     cupomUseCase.pagar(formaPagamento);
   }
 
-  void finalizar() {
+  Future<void> finalizar() async {
     cupomUseCase.finalizar();
   }
 
-  void limpar() {
+  Future<void> limpar() async {
     cupomUseCase.limparCupom();
   }
 
-  void inicializarCupom(int numeroCupom) {
+  Future<void> inicializarCupom(int numeroCupom) async {
     cupomUseCase.inicializarCupom(numeroCupom);
+  }
+
+  Future<void> salvar() async {
+    cupomUseCase.salvarCupom();
   }
 }

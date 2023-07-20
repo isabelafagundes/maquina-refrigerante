@@ -7,9 +7,12 @@ import 'package:maquina_refrigerante/use_case/cupom.use_case.dart';
 import 'package:maquina_refrigerante/use_case/forma_pagamento.use_case.dart';
 import 'package:maquina_refrigerante/use_case/refrigerante.use_case.dart';
 import 'package:maquina_refrigerante_flutter/constants.dart';
-import 'package:maquina_refrigerante_flutter/infrascture/repo/cupom_repo_impl.dart';
-import 'package:maquina_refrigerante_flutter/infrascture/repo/formas_pagamento_impl.dart';
-import 'package:maquina_refrigerante_flutter/infrascture/repo/refrigerantes_repo.impl.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/repo/cupom_repo_dio.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/repo/formas_pagamento_dio.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/repo/impl/cupom_repo_impl.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/repo/impl/formas_pagamento_impl.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/repo/impl/refrigerantes_repo.impl.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/repo/refrigerantes_repo_dio.dart';
 import 'package:maquina_refrigerante_flutter/interfaces/pages/check_in.page.dart';
 import 'package:maquina_refrigerante_flutter/interfaces/pages/pagamento.page.dart';
 
@@ -20,14 +23,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with CheckoutState, CheckoutComponent {
+class _HomePageState extends State<HomePage> with CheckoutState, CheckoutComponent {
   void initState() {
     super.initState();
     inicializar(
-        RefrigeranteUseCase(RefrigerantesRepoImpl(), this),
-        CupomUseCase(CupomRepoImpl(), this),
-        FormaPagamentoUseCase(this, FormasPagamentoImpl()));
+      RefrigerantesRepoDio(),
+      CupomRepoDio(),
+      FormasPagamentoRepoDio(),
+      this,
+    );
     inicializarCupom(1);
     obterRefrigerantesDisponiveis();
     obterFormasPagamento();
@@ -38,8 +42,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(
-              vertical: kPaddingPadrao * 2, horizontal: kPaddingPadrao * 6),
+          padding: const EdgeInsets.symmetric(vertical: kPaddingPadrao * 2, horizontal: kPaddingPadrao * 6),
           child: telaPagamento
               ? PagamentoPage(
                   formasPagamento: formasPagamento,
@@ -65,7 +68,7 @@ class _HomePageState extends State<HomePage>
 
   void aoClicarPagamento() {
     setState(() {
-      if(cupom.itens.isNotEmpty) telaPagamento = true;
+      if (cupom.itens.isNotEmpty) telaPagamento = true;
     });
   }
 
@@ -76,7 +79,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void aoClicarPagar(FormaPagamento formaPagamento) {
-    if(cupom.itens.isNotEmpty) pagar(formaPagamento);
+    if (cupom.itens.isNotEmpty) pagar(formaPagamento);
   }
 
   void aoClicarVoltar() {

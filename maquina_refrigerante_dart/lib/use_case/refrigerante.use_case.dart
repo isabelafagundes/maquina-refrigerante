@@ -8,7 +8,7 @@ class RefrigeranteUseCase {
 
   RefrigeranteUseCase(this._repo, this._state);
 
-  void obterRefrigerantesDisponiveis() {
+  Future<void> obterRefrigerantesDisponiveis() async {
     _state.carregando = true;
     _state.atualizar();
     adquirirRefrigerantes();
@@ -16,9 +16,9 @@ class RefrigeranteUseCase {
     _state.atualizar();
   }
 
-  void adquirirRefrigerantes() {
+  Future<void> adquirirRefrigerantes() async {
     try {
-      List<Refrigerante> refrigerantes = _repo.obterRefrigerantesDisponiveis();
+      List<Refrigerante> refrigerantes = await _repo.obterRefrigerantesDisponiveis();
       _state.refrigerantesDisponiveis = refrigerantes;
     } catch (erro) {
       adicionarErro("Não foi possível obter os refrigerantes!");

@@ -8,24 +8,24 @@ class FormaPagamentoUseCase {
 
   FormaPagamentoUseCase(this._state, this._repo);
 
-  void obterFormasPagamento() {
+  Future<void> obterFormasPagamento() async {
     _state.carregando = true;
     _state.atualizar();
-    adiquirirFormasPagamento();
+    await _adquirirFormasPagamento();
     _state.carregando = false;
     _state.atualizar();
   }
 
-  void adiquirirFormasPagamento() {
+  Future<void> _adquirirFormasPagamento() async {
     try {
-      List<FormaPagamento> formaPagamento = _repo.obterFormasPagamento();
+      List<FormaPagamento> formaPagamento = await _repo.obterFormasPagamento();
       _state.formasPagamento = formaPagamento;
     } catch (erro) {
-      adicionarErro("Não foi possível obter finalizadoras!");
+      _adcionarErro("Não foi possível obter finalizadoras!");
     }
   }
 
-  void adicionarErro(String mensagemErro) {
+  Future<void> _adcionarErro(String mensagemErro) async {
     _state.erro = true;
     _state.mensagemErro = mensagemErro;
   }
