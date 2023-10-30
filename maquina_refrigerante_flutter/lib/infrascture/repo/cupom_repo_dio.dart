@@ -5,11 +5,12 @@ import 'package:maquina_refrigerante/domain/cupom.dart';
 import 'package:maquina_refrigerante/repo/cupom.repo.dart';
 import 'package:maquina_refrigerante/use_case/exceptions/cupom_nao_inicializado.exception.dart';
 import 'package:maquina_refrigerante_flutter/environments.dart';
-import 'package:maquina_refrigerante_flutter/infrascture/service/api.service.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/service/http.service.dart';
 
-class CupomRepoDio extends ApiService implements CupomRepo {
+class CupomRepoDio implements CupomRepo {
   @override
   String path = "";
+  HttpService http = HttpService();
 
   @override
   Future<void> salvar(Cupom cupom) async {

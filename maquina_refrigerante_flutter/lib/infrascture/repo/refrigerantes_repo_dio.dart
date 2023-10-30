@@ -5,12 +5,13 @@ import 'package:maquina_refrigerante/domain/refrigerante.dart';
 import 'package:maquina_refrigerante/repo/refrigrerante.repo.dart';
 import 'package:maquina_refrigerante_flutter/environments.dart';
 import 'package:maquina_refrigerante_flutter/infrascture/dtos/refrigerante/refrigerante.dto.dart';
-import 'package:maquina_refrigerante_flutter/infrascture/service/api.service.dart';
 import 'package:maquina_refrigerante/use_case/exceptions/refrigerantes_nao_encontrados.exception.dart';
+import 'package:maquina_refrigerante_flutter/infrascture/service/http.service.dart';
 
-class RefrigerantesRepoDio extends ApiService implements RefrigeranteRepo {
+class RefrigerantesRepoDio implements RefrigeranteRepo {
   @override
   String path = "";
+  HttpService http = HttpService();
 
   @override
   Future<List<Refrigerante>> obterRefrigerantesDisponiveis() async {

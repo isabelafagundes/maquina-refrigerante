@@ -27,9 +27,9 @@ class _HomePageState extends State<HomePage> with CheckoutState, CheckoutCompone
   void initState() {
     super.initState();
     inicializar(
-      RefrigerantesRepoDio(),
+      RefrigerantesRepoImpl(),
       CupomRepoDio(),
-      FormasPagamentoRepoDio(),
+      FormasPagamentoImpl(),
       this,
     );
     inicializarCupom(1);

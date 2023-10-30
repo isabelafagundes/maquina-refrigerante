@@ -9,6 +9,12 @@ import 'package:maquina_refrigerante_flutter/interfaces/widgets/container_padrao
 import 'package:maquina_refrigerante_flutter/interfaces/widgets/card_registradora.widget.dart';
 
 class PagamentoPage extends StatefulWidget {
+  final Cupom cupom;
+  final List<FormaPagamento> formasPagamento;
+  final List<Refrigerante> refrigerantesDisponiveis;
+  final Function(FormaPagamento) aoClicarPagar;
+  final Function() aoClicarVoltar;
+
   const PagamentoPage(
       {Key? key,
       required this.cupom,
@@ -17,18 +23,12 @@ class PagamentoPage extends StatefulWidget {
       required this.aoClicarPagar,
       required this.aoClicarVoltar})
       : super(key: key);
-  final Cupom cupom;
-  final List<FormaPagamento> formasPagamento;
-  final List<Refrigerante> refrigerantesDisponiveis;
-  final Function(FormaPagamento) aoClicarPagar;
-  final Function() aoClicarVoltar;
 
   @override
   State<PagamentoPage> createState() => _PagamentoPageState();
 }
 
 class _PagamentoPageState extends State<PagamentoPage> {
-  @override
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,7 +43,10 @@ class _PagamentoPageState extends State<PagamentoPage> {
                   ContainerPadraoWidget(
                     children: [
                       CardRegistradoraWidget(
-                          cupom: widget.cupom, refrigerantes: widget.refrigerantesDisponiveis, cor: kCorFonte),
+                        cupom: widget.cupom,
+                        refrigerantes: widget.refrigerantesDisponiveis,
+                        cor: kCorFonte,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -51,9 +54,10 @@ class _PagamentoPageState extends State<PagamentoPage> {
                     children: [
                       const SizedBox(height: 10),
                       CardFormasPagamento(
-                          cupom: widget.cupom,
-                          aoClicarPagar: widget.aoClicarPagar,
-                          formasPagamento: widget.formasPagamento),
+                        cupom: widget.cupom,
+                        aoClicarPagar: widget.aoClicarPagar,
+                        formasPagamento: widget.formasPagamento,
+                      ),
                       const Spacer(),
                       BotoesPagamentoPageWidget(
                         cupom: widget.cupom,

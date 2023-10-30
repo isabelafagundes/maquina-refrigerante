@@ -5,12 +5,14 @@ import 'package:maquina_refrigerante/domain/forma_pagamento.dart';
 import 'package:maquina_refrigerante/repo/forma_pagamento.repo.dart';
 import 'package:maquina_refrigerante_flutter/environments.dart';
 import 'package:maquina_refrigerante_flutter/infrascture/dtos/forma_pagamento/forma_pagamento.dto.dart';
-import 'package:maquina_refrigerante_flutter/infrascture/service/api.service.dart';
 import 'package:maquina_refrigerante/use_case/exceptions/formas_pagamento_nao_encontradas.exception.dart';
 
-class FormasPagamentoRepoDio extends ApiService implements FormaPagamentoRepo {
+import '../service/http.service.dart';
+
+class FormasPagamentoRepoDio implements FormaPagamentoRepo {
   @override
   String path = "";
+  HttpService http = HttpService();
 
   @override
   Future<List<FormaPagamento>> obterFormasPagamento() {

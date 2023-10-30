@@ -9,19 +9,20 @@ import 'package:maquina_refrigerante_flutter/interfaces/widgets/card_registrador
 import 'package:maquina_refrigerante_flutter/interfaces/widgets/frase_selecione_bebida.widget.dart';
 
 class CheckInPage extends StatefulWidget {
-  const CheckInPage(
-      {Key? key,
-      required this.cupom,
-      required this.refrigerantesDisponiveis,
-      required this.aoSelecionarRefrigerante,
-      required this.aoClicarPagamento,
-      required this.aoClicarLimpar})
-      : super(key: key);
   final Cupom cupom;
   final List<Refrigerante> refrigerantesDisponiveis;
   final Function(Refrigerante) aoSelecionarRefrigerante;
   final Function() aoClicarPagamento;
   final Function() aoClicarLimpar;
+
+  const CheckInPage({
+    Key? key,
+    required this.cupom,
+    required this.refrigerantesDisponiveis,
+    required this.aoSelecionarRefrigerante,
+    required this.aoClicarPagamento,
+    required this.aoClicarLimpar,
+  }) : super(key: key);
 
   @override
   State<CheckInPage> createState() => _CheckInPageState();
@@ -37,11 +38,12 @@ class _CheckInPageState extends State<CheckInPage> {
           children: [
             ContainerPadraoWidget(
               children: [
-                if (widget.cupom.itens.isNotEmpty) CardRegistradoraWidget(
-                  cupom: widget.cupom,
-                  refrigerantes: widget.refrigerantesDisponiveis,
-                  cor: kCorFonte.withOpacity(0.5),
-                ),
+                if (widget.cupom.itens.isNotEmpty)
+                  CardRegistradoraWidget(
+                    cupom: widget.cupom,
+                    refrigerantes: widget.refrigerantesDisponiveis,
+                    cor: kCorFonte.withOpacity(0.5),
+                  ),
                 if (widget.cupom.itens.isEmpty) const FraseSelecioneBebida(),
               ],
             ),
