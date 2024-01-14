@@ -1,13 +1,17 @@
-# maquina-refrigerante
-Um programa de máquina de refrigerante construída com a linguagem Dart e a framework Flutter.
+# Máquina de Refrigerante - Flutter & Dart
+Bem-vindo ao projeto Máquina de Refrigerante, uma aplicação construída com a linguagem Dart e o framework Flutter. Esta aplicação simula o sistema de uma máquina de refrigerantes, oferecendo aos usuários a capacidade de escolher bebidas, formas de pagamento e muito mais!
 
-GitHub Pages: https://isabelafagundes.github.io/maquina-refrigerante/
+### Acesse a Demonstração
+Confira a aplicação em ação no <a href="https://isabelafagundes.github.io/jogo-da-memoria-com-FLUTTER/" target="_blank">Git Hub Pages</a>.
 
-Esta aplicação é capaz de simular o sistema de uma máquina de refrigerantes, onde o usuário tem poder de escolha das bebidas, das formas de pagamentos e entre outras funções !
-![image](https://github.com/isabelafagundes/maquina-refrigerante/assets/104397121/7e0553f2-d991-4818-986c-fc6583bc1261)
+### Funcionalidades
+- Seleção de Bebidas: Os usuários podem escolher entre diversas opções de bebidas disponíveis na máquina.
+- Formas de Pagamento: Explore diferentes métodos de pagamento para concluir a transação.
+- Interface Intuitiva: A interface amigável proporciona uma experiência interativa e agradável.
 
-![image](https://github.com/isabelafagundes/maquina-refrigerante/assets/104397121/c72aa7ac-6bf4-4d76-82dc-dec57338a01a) 
-
-![image](https://github.com/isabelafagundes/maquina-refrigerante/assets/104397121/beb659ac-9fc3-4817-8d6b-aaa5f9cecedb)
+### Capturas de Tela
 
 
+#
+
+Divirta-se interagindo com a Máquina de Refrigerante! 🥤✨
